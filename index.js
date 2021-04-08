@@ -17,7 +17,7 @@ async function run() {
             return
         }
 
-        core.info(`Starting download for ${name}`)
+        core.info(`Started downloading ${artifactId}`)
         await downloadArtifact.downloadArtifact(artifactId)
 
     } catch (error) {

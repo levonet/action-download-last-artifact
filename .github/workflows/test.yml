@@ -14,14 +14,18 @@ jobs:
     - run: yarn install
     - run: yarn run lint
     - run: yarn test
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
 
   upload:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - run: |
-        mkdir artifact
-        echo $GITHUB_SHA > uploads/sha1
-        echo $GITHUB_SHA > uploads/dir1/dir2/sha2
+        mkdir -p uploads/dir1/dir2
+        echo ${GITHUB_SHA}
+        echo ${GITHUB_SHA} > uploads/sha1
+        echo ${GITHUB_SHA} > uploads/dir1/dir2/sha2
     - uses: actions/upload-artifact@v2
       with:
         name: artifact
@@ -37,6 +41,9 @@ jobs:
         name: artifact
         path: downloads
     - run: |
-        ls -lR
-        echo downloads/sha1
-        echo downloads/dir1/dir2/sha2
+        ls -lR downloads
+        cat downloads/sha1
+        cat downloads/dir1/dir2/sha2
+        echo "$(cat downloads/sha1) == ${GITHUB_SHA}"
+        # FIXIT: Githab API returns an outdated list of repository artifacts
+        # [[ $(cat downloads/sha1) == ${GITHUB_SHA} ]]
