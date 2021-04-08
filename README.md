@@ -2,6 +2,11 @@
 
 Downloads the last created artifact by name, regardless of which workflow or branch it was created in.
 
+What is it for? For example:
+- you put artifacts in the base brunch, and use in Pull Requests
+- or create artifacts during a release with a tag name in the artifact name.
+  Then in the next steps you can download the artifact by name.
+
 ## Example usage
 
 ```yml
@@ -18,3 +23,26 @@ steps:
 ```
 
 ## Inputs
+
+### `name`
+
+**Required** Artifact name.
+
+### `path`
+
+Destination path.
+
+### `token`
+
+Personal access token (PAT) used to fetch the repository. The PAT is configured
+with the local git config, which enables your scripts to run authenticated git
+commands. The post-job step removes the PAT.
+
+We recommend using a service account with the least permissions necessary.
+Also when generating a new PAT, select the least scopes necessary.
+
+[Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
+
+# License
+
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
