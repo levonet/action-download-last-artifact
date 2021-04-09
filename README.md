@@ -3,9 +3,9 @@
 Downloads the last created artifact by name, regardless of which workflow or branch it was created in.
 
 What is it for? For example:
-- you put artifacts in the base brunch, and use in Pull Requests
-- or create artifacts during a release with a tag name in the artifact name.
-  Then in the next steps you can download the artifact by name.
+- You put artifacts in the base branch, and use it in Pull Requests
+- Or create artifacts during a release with a tag name in the artifact name.
+  Then from the next runs you can download the artifact by name.
 
 ## Example usage
 
@@ -30,7 +30,8 @@ steps:
 
 ### `path`
 
-Destination path.
+Optional. Destination path.
+By default, the artifact is stored in the current directory.
 
 ### `token`
 
