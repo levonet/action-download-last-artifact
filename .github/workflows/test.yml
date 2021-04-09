@@ -1,3 +1,4 @@
+---
 name: test
 
 on:
@@ -20,7 +21,6 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - run: |
         mkdir -p uploads/dir1/dir2
         echo ${GITHUB_SHA}
